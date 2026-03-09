@@ -1,60 +1,85 @@
 <div align="center">
   <h1>Asset Cost Tracker</h1>
-  <p>一个纯前端、local-first 的资产成本追踪工具</p>
-  <p>
-    <img alt="React" src="https://img.shields.io/badge/React-19-61DAFB?logo=react&logoColor=white">
-    <img alt="TypeScript" src="https://img.shields.io/badge/TypeScript-5.9-3178C6?logo=typescript&logoColor=white">
-    <img alt="Vite" src="https://img.shields.io/badge/Vite-7-646CFF?logo=vite&logoColor=white">
-    <img alt="License" src="https://img.shields.io/badge/License-MIT-111827">
-    <img alt="Storage" src="https://img.shields.io/badge/Storage-localStorage-A16207">
-  </p>
+  <p><strong>把每一件你买过的东西，换算成每天的成本。</strong></p>
+  <p>一个简单、干净、纯本地的资产成本追踪工具。</p>
+  <p>不需要登录，不需要后端，打开就能开始记录。</p>
 </div>
 
-输入购买价格和购买日期后，应用会自动计算每项资产已经持有了多少天、平均每天摊销了多少成本，并汇总出当前总资产与总日均支出。数据默认保存在浏览器本地，不依赖后端服务，也不会因为刷新页面而丢失。
-
-## 界面预览
-
-### 仪表盘总览
+<p align="center">
+  本地保存 · 自动计算 · 跨午夜刷新 · 桌面与移动端都能使用
+</p>
 
 <p align="center">
   <img src="./docs/screenshots/dashboard-desktop.png" alt="Asset Cost Tracker dashboard" width="100%">
 </p>
 
-首页会同时展示总资产、总日均支出、未来三年日均支出趋势，以及每项资产的价格、持有天数和日均成本。
+## 为什么会想用它
 
-### 录入体验
+很多东西买回来以后，价格会很快被忘记。
+
+但真正有意思的问题其实是：它到今天为止，平均每天花了多少钱？
+
+Asset Cost Tracker 就是把这个问题做得足够直接。你只需要输入名称、价格和购买日期，它就会自动帮你算出：
+
+- 这件资产已经持有了多少天
+- 现在平均每天的成本是多少
+- 你的全部资产加起来，总共花了多少
+- 如果继续持有，未来的日均成本会怎么变化
+
+## 一眼能看到什么
+
+<table>
+  <tr>
+    <td width="33%" align="center">
+      <h3>总资产</h3>
+      <p>把你录入的价格直接汇总，快速看到目前一共投入了多少。</p>
+    </td>
+    <td width="33%" align="center">
+      <h3>总日均支出</h3>
+      <p>不是模糊感受，而是按持有天数算出来的真实日均成本。</p>
+    </td>
+    <td width="33%" align="center">
+      <h3>趋势变化</h3>
+      <p>未来 36 个月的日均支出走势一眼可见，长期持有会越来越清楚。</p>
+    </td>
+  </tr>
+</table>
+
+## 录入也很轻
 
 <p align="center">
   <img src="./docs/screenshots/asset-form.png" alt="Asset Cost Tracker asset form" width="420">
 </p>
 
-录入表单支持名称、价格、购买日期、状态和图标，包含价格与日期校验，适合快速录入日常设备、家电或收藏品。
+你可以记录：
 
-## 核心能力
+- 资产名称
+- 价格
+- 购买日期
+- 状态
+- 图标
 
-- 记录资产名称、价格、购买日期、状态和图标。
-- 自动计算每项资产的持有天数与日均成本（`¥/天`）。
-- 汇总展示总资产和总日均支出。
-- 支持按 `全部`、`使用中`、`收藏中` 筛选。
-- 支持新增、编辑、删除资产。
-- 提供未来 36 个月日均支出趋势图，方便观察摊销变化。
-- 使用 `localStorage` 持久化资产数据。
-- 跨过本地午夜后自动刷新，确保计算结果不会停留在前一天。
+适合用来管理数码设备、家电、摄影器材、家具、收藏品，或者任何你想知道“每天成本”的东西。
 
-## 适合什么场景
+## 这个应用能帮你做什么
 
-- 追踪数码设备、摄影器材、家电、家具等耐用品的使用成本。
-- 管理个人收藏或家庭资产的买入价格和持有时间。
-- 快速回答“这个东西我现在平均每天花了多少钱”。
+- 新增、编辑、删除资产
+- 按 `全部`、`使用中`、`收藏中` 进行筛选
+- 查看每项资产的持有天数
+- 查看每项资产的日均成本
+- 查看全部资产的总金额与总日均支出
+- 在本地浏览器中保存数据，刷新页面也不会丢
 
-## 快速开始
+系统会把购买当天算作第 1 天，并在本地跨过午夜后自动刷新数据，这样你每天看到的结果都会跟着时间自然变化。
+
+## 开始使用
 
 ### 环境要求
 
 - Node.js 20+
 - npm 10+
 
-### 安装与运行
+### 启动命令
 
 ```bash
 npm install
@@ -63,62 +88,12 @@ npm run dev
 
 默认开发地址通常是 [http://localhost:5173](http://localhost:5173)。
 
-### 构建生产版本
+## 怎么用
 
-```bash
-npm run build
-npm run preview
-```
-
-## 使用方式
-
-1. 点击页面右上角的“新增资产”。
+1. 打开应用后，点击“新增资产”。
 2. 输入资产名称、价格和购买日期。
-3. 可选填写状态和图标，让卡片更容易区分。
-4. 保存后即可查看总资产、总日均支出、单项 `¥/天` 与持有天数。
-5. 随着时间推移，应用会在本地午夜后自动刷新计算结果。
-
-## 核心计算规则
-
-项目严格按照下面的公式计算：
-
-```text
-daysHeld_i = max(1, diffDays(today, purchaseDate_i) + 1)
-dailyCost_i = price_i / daysHeld_i
-totalCost = sum(price_i)
-totalDailyAvg = sum(dailyCost_i)
-```
-
-说明：
-
-- 购买当天记为第 1 天。
-- 今天也会计入持有天数。
-- `dailyCost` 内部按高精度计算，展示时保留两位小数。
-- 为避免除以 0，持有天数最少为 1。
-
-## 数据存储与隐私
-
-- 所有数据都保存在当前浏览器的 `localStorage` 中。
-- 当前存储键为 `assetManager_v1`。
-- 项目不要求登录，也不依赖云端数据库。
-- 清除浏览器本地数据后，资产记录也会被清除。
-
-## 技术栈
-
-- React 19
-- TypeScript
-- Vite
-- Recharts
-- localStorage
-
-## 开发脚本
-
-```bash
-npm run dev      # 启动开发服务器
-npm run build    # TypeScript 检查并构建
-npm run preview  # 预览生产构建
-npm run lint     # 运行 ESLint
-```
+3. 如果你愿意，可以补充状态和图标。
+4. 保存后，首页会立刻更新总资产、日均成本和趋势图。
 
 ## 开源协议
 
