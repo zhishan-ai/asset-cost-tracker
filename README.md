@@ -1,73 +1,110 @@
-# React + TypeScript + Vite
+# Asset Cost Tracker
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+一个面向个人设备、家电、收藏品等场景的纯前端资产成本追踪工具。
 
-Currently, two official plugins are available:
+输入购买价格和购买日期后，应用会自动计算每项资产已经持有了多少天、平均每天摊销了多少成本，并汇总出当前总资产与总日均支出。数据默认保存在浏览器本地，不依赖后端服务，也不会因为刷新页面而丢失。
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 核心能力
 
-## React Compiler
+- 记录资产名称、价格、购买日期、状态和图标。
+- 自动计算每项资产的持有天数与日均成本（`¥/天`）。
+- 汇总展示总资产和总日均支出。
+- 支持按 `全部`、`使用中`、`收藏中` 筛选。
+- 支持新增、编辑、删除资产。
+- 提供未来 36 个月日均支出趋势图，方便观察摊销变化。
+- 使用 `localStorage` 持久化资产数据。
+- 跨过本地午夜后自动刷新，确保计算结果不会停留在前一天。
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## 适合什么场景
 
-## Expanding the ESLint configuration
+- 追踪数码设备、摄影器材、家电、家具等耐用品的使用成本。
+- 管理个人收藏或家庭资产的买入价格和持有时间。
+- 快速回答“这个东西我现在平均每天花了多少钱”。
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## 快速开始
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+### 环境要求
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+- Node.js 20+
+- npm 10+
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+### 安装与运行
+
+```bash
+npm install
+npm run dev
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+默认开发地址通常是 [http://localhost:5173](http://localhost:5173)。
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+### 构建生产版本
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+npm run build
+npm run preview
 ```
+
+## 如何使用
+
+1. 点击页面右上角的“新增资产”。
+2. 输入资产名称、价格和购买日期。
+3. 可选填写状态和图标，让卡片更容易区分。
+4. 保存后即可看到：
+   - 总资产
+   - 总日均支出
+   - 每项资产的 `¥/天`
+   - 每项资产的持有天数
+   - 未来三年的日均支出趋势
+
+## 核心计算规则
+
+项目严格按照下面的公式计算：
+
+```text
+daysHeld_i = max(1, diffDays(today, purchaseDate_i) + 1)
+dailyCost_i = price_i / daysHeld_i
+totalCost = sum(price_i)
+totalDailyAvg = sum(dailyCost_i)
+```
+
+说明：
+
+- 购买当天记为第 1 天。
+- 今天也会计入持有天数。
+- `dailyCost` 内部按高精度计算，展示时保留两位小数。
+- 为避免除以 0，持有天数最少为 1。
+
+## 数据存储与隐私
+
+- 所有数据都保存在当前浏览器的 `localStorage` 中。
+- 当前存储键为 `assetManager_v1`。
+- 项目不要求登录，也不依赖云端数据库。
+- 清除浏览器本地数据后，资产记录也会被清除。
+
+## 技术栈
+
+- React 19
+- TypeScript
+- Vite
+- Recharts
+- localStorage
+
+## 项目特点
+
+- 纯前端部署简单，适合直接托管到静态站点。
+- 界面同时兼顾桌面端与移动端。
+- 表单包含价格、日期等基础校验。
+- 本地午夜自动刷新，避免日均成本计算过期。
+
+## 开发脚本
+
+```bash
+npm run dev      # 启动开发服务器
+npm run build    # TypeScript 检查并构建
+npm run preview  # 预览生产构建
+npm run lint     # 运行 ESLint
+```
+
+## 开源协议
+
+本项目基于 [MIT License](./LICENSE) 开源。
