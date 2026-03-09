@@ -1,8 +1,34 @@
-# Asset Cost Tracker
-
-一个面向个人设备、家电、收藏品等场景的纯前端资产成本追踪工具。
+<div align="center">
+  <h1>Asset Cost Tracker</h1>
+  <p>一个纯前端、local-first 的资产成本追踪工具</p>
+  <p>
+    <img alt="React" src="https://img.shields.io/badge/React-19-61DAFB?logo=react&logoColor=white">
+    <img alt="TypeScript" src="https://img.shields.io/badge/TypeScript-5.9-3178C6?logo=typescript&logoColor=white">
+    <img alt="Vite" src="https://img.shields.io/badge/Vite-7-646CFF?logo=vite&logoColor=white">
+    <img alt="License" src="https://img.shields.io/badge/License-MIT-111827">
+    <img alt="Storage" src="https://img.shields.io/badge/Storage-localStorage-A16207">
+  </p>
+</div>
 
 输入购买价格和购买日期后，应用会自动计算每项资产已经持有了多少天、平均每天摊销了多少成本，并汇总出当前总资产与总日均支出。数据默认保存在浏览器本地，不依赖后端服务，也不会因为刷新页面而丢失。
+
+## 界面预览
+
+### 仪表盘总览
+
+<p align="center">
+  <img src="./docs/screenshots/dashboard-desktop.png" alt="Asset Cost Tracker dashboard" width="100%">
+</p>
+
+首页会同时展示总资产、总日均支出、未来三年日均支出趋势，以及每项资产的价格、持有天数和日均成本。
+
+### 录入体验
+
+<p align="center">
+  <img src="./docs/screenshots/asset-form.png" alt="Asset Cost Tracker asset form" width="420">
+</p>
+
+录入表单支持名称、价格、购买日期、状态和图标，包含价格与日期校验，适合快速录入日常设备、家电或收藏品。
 
 ## 核心能力
 
@@ -44,17 +70,13 @@ npm run build
 npm run preview
 ```
 
-## 如何使用
+## 使用方式
 
 1. 点击页面右上角的“新增资产”。
 2. 输入资产名称、价格和购买日期。
 3. 可选填写状态和图标，让卡片更容易区分。
-4. 保存后即可看到：
-   - 总资产
-   - 总日均支出
-   - 每项资产的 `¥/天`
-   - 每项资产的持有天数
-   - 未来三年的日均支出趋势
+4. 保存后即可查看总资产、总日均支出、单项 `¥/天` 与持有天数。
+5. 随着时间推移，应用会在本地午夜后自动刷新计算结果。
 
 ## 核心计算规则
 
@@ -88,13 +110,6 @@ totalDailyAvg = sum(dailyCost_i)
 - Vite
 - Recharts
 - localStorage
-
-## 项目特点
-
-- 纯前端部署简单，适合直接托管到静态站点。
-- 界面同时兼顾桌面端与移动端。
-- 表单包含价格、日期等基础校验。
-- 本地午夜自动刷新，避免日均成本计算过期。
 
 ## 开发脚本
 
