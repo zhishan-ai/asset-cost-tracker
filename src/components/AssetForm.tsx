@@ -247,7 +247,7 @@ export function AssetForm({ initialData, onSubmit, onClose }: AssetFormProps) {
                   className={`flex items-center gap-1.5 rounded-full border px-3 py-1.5 text-sm transition-all duration-200 cursor-pointer ${
                     isActive
                       ? 'border-[var(--color-accent)] bg-[var(--color-accent)] text-white'
-                      : 'border-[var(--color-border)] bg-[var(--color-background)] hover:border-[var(--color-text-secondary)]'
+                      : 'border-[var(--color-border)] bg-[rgba(255,255,255,0.4)] hover:border-[var(--color-text-secondary)]'
                   }`}
                   aria-pressed={isActive}
                 >
@@ -270,7 +270,7 @@ export function AssetForm({ initialData, onSubmit, onClose }: AssetFormProps) {
                 const nextIcon = moreIcons.find(opt => !values.icon.includes(opt.icon))
                 if (nextIcon) handleChange('icon', nextIcon.icon)
               }}
-              className="rounded-full border border-dashed border-[var(--color-border)] bg-[var(--color-background)] px-3 py-1.5 text-sm transition-all duration-200 hover:border-[var(--color-text-secondary)] cursor-pointer"
+              className="rounded-full border border-dashed border-[var(--color-border)] bg-[rgba(255,255,255,0.4)] px-3 py-1.5 text-sm transition-all duration-200 hover:border-[var(--color-text-secondary)] cursor-pointer"
               style={{ color: 'var(--color-text-tertiary)' }}
             >
               更多…
@@ -289,7 +289,7 @@ export function AssetForm({ initialData, onSubmit, onClose }: AssetFormProps) {
                     className={`flex items-center gap-1.5 rounded-full border px-3 py-1.5 text-sm transition-all duration-200 cursor-pointer ${
                       isActive
                         ? 'border-[var(--color-accent)] bg-[var(--color-accent)] text-white'
-                        : 'border-[var(--color-border)] bg-[var(--color-background)] hover:border-[var(--color-text-secondary)]'
+                        : 'border-[var(--color-border)] bg-[rgba(255,255,255,0.4)] hover:border-[var(--color-text-secondary)]'
                     }`}
                     aria-pressed={isActive}
                   >

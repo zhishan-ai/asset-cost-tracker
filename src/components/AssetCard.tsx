@@ -59,7 +59,7 @@ export function AssetCard({ asset, dailyCost, daysHeld, onEdit, onDelete }: Asse
             <p className="text-[10px] uppercase tracking-wider mb-1" style={{ color: 'var(--color-text-tertiary)' }}>
               ¥/天
             </p>
-            <p className="text-sm font-semibold" style={{ color: 'var(--color-accent)' }}>
+            <p className="text-sm font-semibold" style={{ color: 'var(--color-accent)', fontVariantNumeric: 'tabular-nums' }}>
               {formatCurrency(dailyCost)}
             </p>
           </div>

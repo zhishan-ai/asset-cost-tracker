@@ -25,9 +25,9 @@ function CustomActiveDot({ cx, cy }: { cx?: number; cy?: number }) {
   if (cx === undefined || cy === undefined) return null
   return (
     <g>
-      <circle cx={cx} cy={cy} r="12" fill="rgba(202, 138, 4, 0.2)" className="animate-pulse" />
-      <circle cx={cx} cy={cy} r="6" fill="rgba(234, 179, 8, 0.4)" />
-      <circle cx={cx} cy={cy} r="3" fill="#EAB308" stroke="var(--color-background)" strokeWidth="2" />
+      <circle cx={cx} cy={cy} r="12" fill="rgba(0, 122, 255, 0.15)" className="animate-pulse" />
+      <circle cx={cx} cy={cy} r="6" fill="rgba(0, 122, 255, 0.3)" />
+      <circle cx={cx} cy={cy} r="3" fill="#007AFF" stroke="var(--color-background)" strokeWidth="2" />
     </g>
   )
 }
@@ -160,13 +160,13 @@ export function DailyAvgForecastChart({ points }: DailyAvgForecastChartProps) {
             {/* Gradient definitions */}
             <defs>
               <linearGradient id={gradientId} x1="0" y1="0" x2="0" y2="1">
-                <stop offset="0%" stopColor="rgba(202, 138, 4, 0.3)" />
-                <stop offset="50%" stopColor="rgba(202, 138, 4, 0.1)" />
-                <stop offset="100%" stopColor="rgba(202, 138, 4, 0)" />
+                <stop offset="0%" stopColor="rgba(0, 122, 255, 0.2)" />
+                <stop offset="50%" stopColor="rgba(0, 122, 255, 0.08)" />
+                <stop offset="100%" stopColor="rgba(0, 122, 255, 0)" />
               </linearGradient>
               <linearGradient id={lineGradientId} x1="0" y1="0" x2="1" y2="0">
-                <stop offset="0%" stopColor="#CA8A04" />
-                <stop offset="100%" stopColor="#EAB308" />
+                <stop offset="0%" stopColor="#007AFF" />
+                <stop offset="100%" stopColor="#409CFF" />
               </linearGradient>
               {/* Glow filter for the line */}
               <filter id={glowId} x="-50%" y="-50%" width="200%" height="200%">
@@ -212,7 +212,7 @@ export function DailyAvgForecastChart({ points }: DailyAvgForecastChartProps) {
               cursor={{
                 stroke: 'var(--color-accent)',
                 strokeWidth: 1,
-                strokeOpacity: 0.5,
+                strokeOpacity: 0.4,
                 strokeDasharray: '4 4',
               }}
               allowEscapeViewBox={{ x: false, y: false }}
@@ -227,8 +227,8 @@ export function DailyAvgForecastChart({ points }: DailyAvgForecastChartProps) {
                     className="rounded-xl p-3 shadow-xl backdrop-blur-xl border"
                     style={{
                       background: 'var(--glass-bg-dark)',
-                      borderColor: 'rgba(202, 138, 4, 0.3)',
-                      boxShadow: '0 8px 32px rgba(0, 0, 0, 0.12), 0 0 0 1px rgba(202, 138, 4, 0.1)',
+                      borderColor: 'var(--glass-border)',
+                      boxShadow: 'var(--glass-shadow-lg)',
                       whiteSpace: 'nowrap',
                     }}
                   >
@@ -238,7 +238,7 @@ export function DailyAvgForecastChart({ points }: DailyAvgForecastChartProps) {
                     <div className="flex items-center gap-2">
                       <div
                         className="h-2 w-2 rounded-full"
-                        style={{ background: 'var(--gradient-gold)' }}
+                        style={{ background: 'var(--color-accent)' }}
                       />
                       <p className="text-sm font-semibold" style={{ color: 'var(--color-text-primary)' }}>
                         {formatCurrency(value)}
@@ -284,7 +284,7 @@ export function DailyAvgForecastChart({ points }: DailyAvgForecastChartProps) {
         <div className="flex items-center gap-2">
           <div
             className="h-2 w-2 rounded-full"
-            style={{ background: 'var(--gradient-gold)' }}
+            style={{ background: 'var(--color-accent)' }}
           />
           <span className="text-xs" style={{ color: 'var(--color-text-tertiary)' }}>
             日均支出趋势
